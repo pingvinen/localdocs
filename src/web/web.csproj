@@ -57,4 +57,16 @@
   <ItemGroup>
     <Content Include="web.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MarkdownTestFiles\" />
+    <Folder Include="MarkdownTestFiles\sub\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MarkdownTestFiles\introduction.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="MarkdownTestFiles\sub\specific.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
