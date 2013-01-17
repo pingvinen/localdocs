@@ -53,6 +53,10 @@
   </ProjectExtensions>
   <ItemGroup>
     <Compile Include="MarkdownHttpHandler.cs" />
+    <Compile Include="TargetSitesConfigSection.cs" />
+    <Compile Include="TargetSitesElementCollection.cs" />
+    <Compile Include="TargetSitesElement.cs" />
+    <Compile Include="TargetSitesConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />

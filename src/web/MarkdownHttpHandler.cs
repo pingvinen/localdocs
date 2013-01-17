@@ -11,11 +11,14 @@ namespace LocalDocs.Web
 	/// </summary>
 	public class MarkdownHttpHandler : IHttpHandler
 	{
+		private TargetSitesElement targetSite;
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="LocalDocs.Web.MarkdownHttpHandler"/> class.
 		/// </summary>
 		public MarkdownHttpHandler()
 		{
+			this.targetSite = TargetSitesConfig.GetDefaultSite();
 		}
 
 		/// <summary>
@@ -33,6 +36,7 @@ namespace LocalDocs.Web
 			resp.Write("<html>");
 			resp.Write("<body>");
 			resp.Write("<h1>Good neeeews everyone</h1>");
+			resp.Write(String.Format("<p>Current target site name: '{0}'</p>", this.targetSite.Name));
 			resp.Write(String.Format("<p>Markdown root directoy: '{0}'</p>", rootDir));
 			resp.Write("</body>");
 			resp.Write("</html>");
@@ -41,7 +45,7 @@ namespace LocalDocs.Web
 
 		private string GetMarkdownRootDir()
 		{
-			string fromConf = ConfigurationManager.AppSettings["MarkdownFilesRootFolder"];
+			string fromConf = this.targetSite.Root;
 
 			if (Path.IsPathRooted(fromConf))
 			{
