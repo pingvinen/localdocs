@@ -65,21 +65,21 @@
   <ItemGroup>
     <Content Include="web.config" />
     <Content Include="__layout\master.html" />
-    <Content Include="MarkdownTestFiles_Target2\__layout\master.html" />
+    <Content Include="MarkdownTestFiles_CustomLayout\__layout\master.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MarkdownTestFiles_Target1\" />
-    <Folder Include="MarkdownTestFiles_Target1\sub\" />
-    <Folder Include="MarkdownTestFiles_Target2\" />
     <Folder Include="Config\" />
     <Folder Include="__layout\" />
-    <Folder Include="MarkdownTestFiles_Target2\__layout\" />
+    <Folder Include="MarkdownTestFiles_DefaultLayout\" />
+    <Folder Include="MarkdownTestFiles_DefaultLayout\sub\" />
+    <Folder Include="MarkdownTestFiles_CustomLayout\" />
+    <Folder Include="MarkdownTestFiles_CustomLayout\__layout\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MarkdownTestFiles_Target1\introduction.md" />
-    <None Include="MarkdownTestFiles_Target1\sub\specific.md" />
-    <None Include="MarkdownTestFiles_Target2\home.md" />
-    <None Include="MarkdownTestFiles_Target1\index.md" />
-    <None Include="MarkdownTestFiles_Target2\index.md" />
+    <None Include="MarkdownTestFiles_DefaultLayout\introduction.md" />
+    <None Include="MarkdownTestFiles_DefaultLayout\sub\specific.md" />
+    <None Include="MarkdownTestFiles_DefaultLayout\index.md" />
+    <None Include="MarkdownTestFiles_CustomLayout\home.md" />
+    <None Include="MarkdownTestFiles_CustomLayout\index.md" />
   </ItemGroup>
 </Project>
