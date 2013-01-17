@@ -3,6 +3,7 @@ using System.Web;
 using System.Configuration;
 using System.IO;
 using MarkdownSharp;
+using System.Text;
 
 namespace LocalDocs.Web
 {
@@ -46,22 +47,30 @@ namespace LocalDocs.Web
 			requestedPath = requestedPath.Remove(0, 1);
 
 			string mdFilePath = String.Format("{0}.md", Path.Combine(rootDir, requestedPath));
+			string templateFilePath = Path.Combine(rootDir, "master.html");
 
+			#region Debug
+			StringBuilder sbDebug = new StringBuilder();
+			sbDebug.AppendFormat("<p>Current target site name: '{0}'</p>", this.targetSite.Name);
+			sbDebug.AppendFormat("<p>Markdown root directoy: '{0}'</p>", rootDir);
+			sbDebug.AppendFormat("<p>Requested path: '{0}'</p>", requestedPath);
+			sbDebug.AppendFormat("<p>Markdown file path: '{0}'</p>", mdFilePath);
+			#endregion Debug
 
+			if (!File.Exists(templateFilePath))
+			{
+				throw new InvalidOperationException(String.Format("Template file for '{0}' is missing. It should be at '{1}'", this.targetSite.Name, templateFilePath));
+			}
 
 			HttpResponse resp = context.Response;
-			resp.Write("<html>");
-			resp.Write("<body>");
-			resp.Write("<h1>Good neeeews everyone</h1>");
-			resp.Write(String.Format("<p>Current target site name: '{0}'</p>", this.targetSite.Name));
-			resp.Write(String.Format("<p>Markdown root directoy: '{0}'</p>", rootDir));
-			resp.Write(String.Format("<p>Requested path: '{0}'</p>", requestedPath));
-			resp.Write(String.Format("<p>Markdown file path: '{0}'</p>", mdFilePath));
-			resp.Write("<div style='border: 1px solid #000'>");
-			resp.Write(this.ProcessMarkdown(this.GetMarkdown(mdFilePath)));
-			resp.Write("</div>");
-			resp.Write("</body>");
-			resp.Write("</html>");
+
+			string output = File.ReadAllText(templateFilePath);
+
+			output = output.Replace("${target.name}", this.targetSite.Name);
+			output = output.Replace("${content}", this.ProcessMarkdown(this.GetMarkdown(mdFilePath)));
+			output = output.Replace("${debug}", sbDebug.ToString());
+
+			resp.Write(output);
 		}
 		#endregion Process request
 
@@ -73,7 +82,7 @@ namespace LocalDocs.Web
 				return File.ReadAllText(path);
 			}
 
-			return "File not found";
+			return String.Format("File not found: '{0}'", path);
 		}
 		#endregion Get markdown
 
@@ -96,7 +105,9 @@ namespace LocalDocs.Web
 				return fromConf;
 			}
 
-			string absolutePath = HttpContext.Current.Server.MapPath(fromConf);
+			string webroot = HttpContext.Current.Server.MapPath("/");
+
+			string absolutePath = Path.Combine(webroot, fromConf);
 
 			return absolutePath;
 		}
