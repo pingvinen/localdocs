@@ -71,6 +71,12 @@
     <Content Include="web.config" />
     <Content Include="__layout\master.html" />
     <Content Include="MarkdownTestFiles_CustomLayout\__layout\master.html" />
+    <Content Include="__layout\assets\img\glyphicons-halflings.png" />
+    <Content Include="__layout\assets\img\glyphicons-halflings-white.png" />
+    <Content Include="__layout\assets\css\bootstrap.min.css" />
+    <Content Include="__layout\assets\css\bootstrap-responsive.min.css" />
+    <Content Include="__layout\assets\js\bootstrap.min.js" />
+    <Content Include="__layout\assets\css\default.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />
@@ -80,6 +86,9 @@
     <Folder Include="MarkdownTestFiles_CustomLayout\" />
     <Folder Include="MarkdownTestFiles_CustomLayout\__layout\" />
     <Folder Include="Handlers\" />
+    <Folder Include="__layout\assets\" />
+    <Folder Include="__layout\assets\css\" />
+    <Folder Include="__layout\assets\js\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MarkdownTestFiles_DefaultLayout\introduction.md" />
