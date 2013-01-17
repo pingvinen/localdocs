@@ -56,10 +56,11 @@
   </ProjectExtensions>
   <ItemGroup>
     <Compile Include="MarkdownHttpHandler.cs" />
-    <Compile Include="TargetSitesConfigSection.cs" />
-    <Compile Include="TargetSitesElementCollection.cs" />
-    <Compile Include="TargetSitesElement.cs" />
     <Compile Include="TargetSitesConfig.cs" />
+    <Compile Include="Config\TargetSitesConfigSection.cs" />
+    <Compile Include="Config\TargetSitesElement.cs" />
+    <Compile Include="Config\TargetSitesElementCollection.cs" />
+    <Compile Include="TargetSite.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
@@ -69,6 +70,7 @@
     <Folder Include="MarkdownTestFiles_Target1\" />
     <Folder Include="MarkdownTestFiles_Target1\sub\" />
     <Folder Include="MarkdownTestFiles_Target2\" />
+    <Folder Include="Config\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MarkdownTestFiles_Target1\introduction.md" />

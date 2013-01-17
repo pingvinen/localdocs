@@ -1,7 +1,7 @@
 using System;
 using System.Configuration;
 
-namespace LocalDocs.Web
+namespace LocalDocs.Web.Config
 {
 	public class TargetSitesElement : ConfigurationElement
 	{

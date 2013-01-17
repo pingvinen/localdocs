@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using LocalDocs.Web.Config;
 
 namespace LocalDocs.Web
 {
@@ -13,7 +14,7 @@ namespace LocalDocs.Web
 		/// <summary>
 		/// Contains all the target sites defined in config
 		/// </summary>
-		protected static Dictionary<string, TargetSitesElement> instances;
+		protected static Dictionary<string, TargetSite> mappedInstances;
 
 		/// <summary>
 		/// The ID of the default target site
@@ -23,13 +24,18 @@ namespace LocalDocs.Web
 
 		static TargetSitesConfig()
 		{
-			instances = new Dictionary<string,TargetSitesElement>();
+			mappedInstances = new Dictionary<string,TargetSite>();
 
 			TargetSitesConfigSection sec = (TargetSitesConfigSection)ConfigurationManager.GetSection("TargetSites");
 
 			foreach (TargetSitesElement cur in sec.Instances)
 			{
-				instances.Add(cur.Id, cur);
+				mappedInstances.Add(cur.Id, new TargetSite() {
+					Id = cur.Id,
+					Name = cur.Name,
+					Root = cur.Root,
+					TemplateFile = String.Empty
+				});
 
 				if (cur.IsDefault)
 				{
@@ -44,11 +50,11 @@ namespace LocalDocs.Web
 		/// <param name="targetId">
 		/// The ID of the target site to get
 		/// </param>
-		public static TargetSitesElement Get(string targetId)
+		public static TargetSite Get(string targetId)
 		{
-			TargetSitesElement elm;
+			TargetSite elm;
 
-			if (!instances.TryGetValue(targetId, out elm))
+			if (!mappedInstances.TryGetValue(targetId, out elm))
 			{
 				throw new ArgumentException(String.Format("A target site with id '{0}' has not been defined in <TargetSites>", targetId));
 			}
@@ -56,19 +62,19 @@ namespace LocalDocs.Web
 			return elm;
 		}
 
-		public static TargetSitesElement GetDefaultSite()
+		public static TargetSite GetDefaultSite()
 		{
 			if (String.IsNullOrEmpty(defaultTargetId))
 			{
-				defaultTargetId = instances.First().Value.Id;
+				defaultTargetId = mappedInstances.First().Value.Id;
 			}
 
 			return Get(defaultTargetId);
 		}
 
-		public static IList<TargetSitesElement> GetAllSites()
+		public static IList<TargetSite> GetAllSites()
 		{
-			return instances.Select<KeyValuePair<string, TargetSitesElement>, TargetSitesElement>(yy => yy.Value).ToList();
+			return mappedInstances.Select<KeyValuePair<string, TargetSite>, TargetSite>(yy => yy.Value).ToList();
 		}
 
 		private TargetSitesConfig()

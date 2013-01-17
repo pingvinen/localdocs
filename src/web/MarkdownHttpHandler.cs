@@ -14,7 +14,7 @@ namespace LocalDocs.Web
 	/// </summary>
 	public class MarkdownHttpHandler : IHttpHandler
 	{
-		private TargetSitesElement targetSite;
+		private TargetSite targetSite;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="LocalDocs.Web.MarkdownHttpHandler"/> class.
@@ -143,10 +143,10 @@ namespace LocalDocs.Web
 
 			sb.Append("<select onchange=\"window.location='switchsite?to='+this.value;\">");
 
-			IList<TargetSitesElement> sites = TargetSitesConfig.GetAllSites();
+			IList<TargetSite> sites = TargetSitesConfig.GetAllSites();
 
 			string selected;
-			foreach (TargetSitesElement cur in sites)
+			foreach (TargetSite cur in sites)
 			{
 				selected = String.Empty;
 
