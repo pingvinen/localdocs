@@ -1,5 +1,7 @@
 using System;
 using System.Web;
+using System.Configuration;
+using System.IO;
 
 namespace LocalDocs.Web
 {
@@ -25,13 +27,30 @@ namespace LocalDocs.Web
 		#region Process request
 		public void ProcessRequest(HttpContext context)
 		{
+			string rootDir = this.GetMarkdownRootDir();
+
 			HttpResponse resp = context.Response;
 			resp.Write("<html>");
 			resp.Write("<body>");
 			resp.Write("<h1>Good neeeews everyone</h1>");
+			resp.Write(String.Format("<p>Markdown root directoy: '{0}'</p>", rootDir));
 			resp.Write("</body>");
 			resp.Write("</html>");
 		}
 		#endregion Process request
+
+		private string GetMarkdownRootDir()
+		{
+			string fromConf = ConfigurationManager.AppSettings["MarkdownFilesRootFolder"];
+
+			if (Path.IsPathRooted(fromConf))
+			{
+				return fromConf;
+			}
+
+			string absolutePath = HttpContext.Current.Server.MapPath(fromConf);
+
+			return absolutePath;
+		}
 	}
 }
