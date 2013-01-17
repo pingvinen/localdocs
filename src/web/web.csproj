@@ -56,25 +56,36 @@
   </ProjectExtensions>
   <ItemGroup>
     <Compile Include="MarkdownHttpHandler.cs" />
-    <Compile Include="TargetSitesConfigSection.cs" />
-    <Compile Include="TargetSitesElementCollection.cs" />
-    <Compile Include="TargetSitesElement.cs" />
     <Compile Include="TargetSitesConfig.cs" />
+    <Compile Include="Config\TargetSitesConfigSection.cs" />
+    <Compile Include="Config\TargetSitesElement.cs" />
+    <Compile Include="Config\TargetSitesElementCollection.cs" />
+    <Compile Include="TargetSite.cs" />
+    <Compile Include="PageContext.cs" />
+    <Compile Include="Handlers\IHandler.cs" />
+    <Compile Include="Handlers\MarkdownPageHandler.cs" />
+    <Compile Include="Handlers\SwitchSiteHandler.cs" />
+    <Compile Include="Constants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
-    <Content Include="MarkdownTestFiles_Target2\master.html" />
+    <Content Include="__layout\master.html" />
+    <Content Include="MarkdownTestFiles_CustomLayout\__layout\master.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MarkdownTestFiles_Target1\" />
-    <Folder Include="MarkdownTestFiles_Target1\sub\" />
-    <Folder Include="MarkdownTestFiles_Target2\" />
+    <Folder Include="Config\" />
+    <Folder Include="__layout\" />
+    <Folder Include="MarkdownTestFiles_DefaultLayout\" />
+    <Folder Include="MarkdownTestFiles_DefaultLayout\sub\" />
+    <Folder Include="MarkdownTestFiles_CustomLayout\" />
+    <Folder Include="MarkdownTestFiles_CustomLayout\__layout\" />
+    <Folder Include="Handlers\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MarkdownTestFiles_Target1\introduction.md" />
-    <None Include="MarkdownTestFiles_Target1\sub\specific.md" />
-    <None Include="MarkdownTestFiles_Target2\home.md" />
-    <None Include="MarkdownTestFiles_Target1\index.md" />
-    <None Include="MarkdownTestFiles_Target2\index.md" />
+    <None Include="MarkdownTestFiles_DefaultLayout\introduction.md" />
+    <None Include="MarkdownTestFiles_DefaultLayout\sub\specific.md" />
+    <None Include="MarkdownTestFiles_DefaultLayout\index.md" />
+    <None Include="MarkdownTestFiles_CustomLayout\home.md" />
+    <None Include="MarkdownTestFiles_CustomLayout\index.md" />
   </ItemGroup>
 </Project>

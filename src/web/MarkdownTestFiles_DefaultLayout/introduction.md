@@ -1,4 +1,4 @@
-Target1: Introduction
+Default: Introduction
 ============
 
 This file lives in the first level.
