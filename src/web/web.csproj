@@ -61,6 +61,11 @@
     <Compile Include="Config\TargetSitesElement.cs" />
     <Compile Include="Config\TargetSitesElementCollection.cs" />
     <Compile Include="TargetSite.cs" />
+    <Compile Include="PageContext.cs" />
+    <Compile Include="Handlers\IHandler.cs" />
+    <Compile Include="Handlers\MarkdownPageHandler.cs" />
+    <Compile Include="Handlers\SwitchSiteHandler.cs" />
+    <Compile Include="Constants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
@@ -74,6 +79,7 @@
     <Folder Include="MarkdownTestFiles_DefaultLayout\sub\" />
     <Folder Include="MarkdownTestFiles_CustomLayout\" />
     <Folder Include="MarkdownTestFiles_CustomLayout\__layout\" />
+    <Folder Include="Handlers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MarkdownTestFiles_DefaultLayout\introduction.md" />
