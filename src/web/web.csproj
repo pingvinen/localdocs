@@ -58,14 +58,18 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MarkdownTestFiles\" />
-    <Folder Include="MarkdownTestFiles\sub\" />
+    <Folder Include="MarkdownTestFiles_Target1\" />
+    <Folder Include="MarkdownTestFiles_Target1\sub\" />
+    <Folder Include="MarkdownTestFiles_Target2\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MarkdownTestFiles\introduction.md">
+    <None Include="MarkdownTestFiles_Target1\introduction.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="MarkdownTestFiles\sub\specific.md">
+    <None Include="MarkdownTestFiles_Target1\sub\specific.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="MarkdownTestFiles_Target2\home.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
