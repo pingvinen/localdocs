@@ -1,7 +1,7 @@
 using System;
 using System.Web;
 
-namespace LocalDocs.Web.Handlers
+namespace LocalDocs.Web
 {
 	public interface IHandler
 	{

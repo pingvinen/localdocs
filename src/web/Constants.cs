@@ -21,5 +21,10 @@ namespace LocalDocs.Web
 		/// The request path of "switch site"-requests
 		/// </summary>
 		public const string SwitchSitePath = "/switchsite";
+
+		/// <summary>
+		/// The first part of the request path for assets
+		/// </summary>
+		public const string AssetsPath = "/assets/";
 	}
 }

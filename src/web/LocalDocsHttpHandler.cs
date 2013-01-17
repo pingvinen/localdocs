@@ -1,6 +1,5 @@
 using System;
 using System.Web;
-using LocalDocs.Web.Handlers;
 
 namespace LocalDocs.Web
 {
@@ -8,7 +7,7 @@ namespace LocalDocs.Web
 	/// Handles all requests by looking for, and outputting, a Markdown
 	/// file that matches the location in the url
 	/// </summary>
-	public class MarkdownHttpHandler : IHttpHandler
+	public class LocalDocsHttpHandler : IHttpHandler
 	{
 		private TargetSite targetSite;
 
@@ -17,7 +16,7 @@ namespace LocalDocs.Web
 		/// <summary>
 		/// Initializes a new instance of the <see cref="LocalDocs.Web.MarkdownHttpHandler"/> class.
 		/// </summary>
-		public MarkdownHttpHandler()
+		public LocalDocsHttpHandler()
 		{
 			this.targetSite = TargetSitesConfig.GetDefaultSite();
 		}
@@ -31,8 +30,6 @@ namespace LocalDocs.Web
 		#region Process request
 		public void ProcessRequest(HttpContext context)
 		{
-			HttpRequest req = context.Request;
-
 			#region Web root
 			if (String.IsNullOrEmpty(this.webRoot))
 			{
@@ -40,23 +37,8 @@ namespace LocalDocs.Web
 			}
 			#endregion Web root
 
-			IHandler handler = null;
-
-			switch (req.Path)
-			{
-				case Constants.SwitchSitePath:
-				{
-					handler = new SwitchSiteHandler();
-					break;
-				}
-
-				default:
-				{
-					handler = new MarkdownPageHandler();
-					break;
-				}
-			}
-
+			IHandler handler = HandlerFactory.GetInstance(context);
+		
 			PageContext pcon = new PageContext() {
 				Site = this.targetSite,
 				WebRoot = this.webRoot

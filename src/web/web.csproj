@@ -55,17 +55,19 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Compile Include="MarkdownHttpHandler.cs" />
     <Compile Include="TargetSitesConfig.cs" />
     <Compile Include="Config\TargetSitesConfigSection.cs" />
     <Compile Include="Config\TargetSitesElement.cs" />
     <Compile Include="Config\TargetSitesElementCollection.cs" />
     <Compile Include="TargetSite.cs" />
     <Compile Include="PageContext.cs" />
-    <Compile Include="Handlers\IHandler.cs" />
     <Compile Include="Handlers\MarkdownPageHandler.cs" />
     <Compile Include="Handlers\SwitchSiteHandler.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="LocalDocsHttpHandler.cs" />
+    <Compile Include="IHandler.cs" />
+    <Compile Include="HandlerFactory.cs" />
+    <Compile Include="Handlers\AssetsHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
