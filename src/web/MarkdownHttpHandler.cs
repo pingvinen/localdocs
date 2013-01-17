@@ -2,6 +2,7 @@ using System;
 using System.Web;
 using System.Configuration;
 using System.IO;
+using MarkdownSharp;
 
 namespace LocalDocs.Web
 {
@@ -57,7 +58,7 @@ namespace LocalDocs.Web
 			resp.Write(String.Format("<p>Requested path: '{0}'</p>", requestedPath));
 			resp.Write(String.Format("<p>Markdown file path: '{0}'</p>", mdFilePath));
 			resp.Write("<div style='border: 1px solid #000'>");
-			resp.Write(this.GetMarkdown(mdFilePath));
+			resp.Write(this.ProcessMarkdown(this.GetMarkdown(mdFilePath)));
 			resp.Write("</div>");
 			resp.Write("</body>");
 			resp.Write("</html>");
@@ -75,6 +76,15 @@ namespace LocalDocs.Web
 			return "File not found";
 		}
 		#endregion Get markdown
+
+		#region Process markdown
+		private string ProcessMarkdown(string markdown)
+		{
+			Markdown md = new Markdown();
+
+			return md.Transform(markdown);
+		}
+		#endregion Process markdown
 
 		#region Helper: markdown root dir
 		private string GetMarkdownRootDir()
