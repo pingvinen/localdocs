@@ -16,6 +16,8 @@ namespace LocalDocs.Web
 	{
 		private TargetSite targetSite;
 
+		private string webRoot;
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="LocalDocs.Web.MarkdownHttpHandler"/> class.
 		/// </summary>
@@ -35,6 +37,13 @@ namespace LocalDocs.Web
 		{
 			HttpRequest req = context.Request;
 			HttpResponse resp = context.Response;
+
+			#region Web root
+			if (String.IsNullOrEmpty(this.webRoot))
+			{
+				this.webRoot = context.Server.MapPath("/");
+			}
+			#endregion Web root
 
 			string rootDir = this.GetMarkdownRootDir();
 			string requestedPath = req.Path;
@@ -71,7 +80,23 @@ namespace LocalDocs.Web
 			requestedPath = requestedPath.Remove(0, 1);
 
 			string mdFilePath = String.Format("{0}.md", Path.Combine(rootDir, requestedPath));
-			string templateFilePath = Path.Combine(rootDir, "master.html");
+
+			#region Template
+			if (String.IsNullOrEmpty(this.targetSite.TemplateFile))
+			{
+				string tmp = Path.Combine(rootDir, "master.html");
+				if (File.Exists(tmp))
+				{
+					this.targetSite.TemplateFile = tmp;
+				}
+				else
+				{
+					this.targetSite.TemplateFile = Path.Combine(this.webRoot, "__layout", "master.html");
+				}
+			}
+
+			string templateFilePath = this.targetSite.TemplateFile;
+			#endregion Template
 
 			#region Debug
 			StringBuilder sbDebug = new StringBuilder();
@@ -128,9 +153,7 @@ namespace LocalDocs.Web
 				return fromConf;
 			}
 
-			string webroot = HttpContext.Current.Server.MapPath("/");
-
-			string absolutePath = Path.Combine(webroot, fromConf);
+			string absolutePath = Path.Combine(this.webRoot, fromConf);
 
 			return absolutePath;
 		}
