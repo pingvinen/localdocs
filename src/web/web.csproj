@@ -63,9 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
-    <Content Include="MarkdownTestFiles_Target2\master.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="MarkdownTestFiles_Target2\master.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MarkdownTestFiles_Target1\" />
@@ -73,20 +71,10 @@
     <Folder Include="MarkdownTestFiles_Target2\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MarkdownTestFiles_Target1\introduction.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="MarkdownTestFiles_Target1\sub\specific.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="MarkdownTestFiles_Target2\home.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="MarkdownTestFiles_Target1\index.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="MarkdownTestFiles_Target2\index.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="MarkdownTestFiles_Target1\introduction.md" />
+    <None Include="MarkdownTestFiles_Target1\sub\specific.md" />
+    <None Include="MarkdownTestFiles_Target2\home.md" />
+    <None Include="MarkdownTestFiles_Target1\index.md" />
+    <None Include="MarkdownTestFiles_Target2\index.md" />
   </ItemGroup>
 </Project>
