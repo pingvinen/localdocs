@@ -66,6 +66,11 @@ namespace LocalDocs.Web
 			return Get(defaultTargetId);
 		}
 
+		public static IList<TargetSitesElement> GetAllSites()
+		{
+			return instances.Select<KeyValuePair<string, TargetSitesElement>, TargetSitesElement>(yy => yy.Value).ToList();
+		}
+
 		private TargetSitesConfig()
 		{
 		}
