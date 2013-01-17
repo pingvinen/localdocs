@@ -18,6 +18,8 @@ namespace LocalDocs.Web
 
 		private string webRoot;
 
+		private readonly string LayoutFolderName = "__layout";
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="LocalDocs.Web.MarkdownHttpHandler"/> class.
 		/// </summary>
@@ -84,14 +86,14 @@ namespace LocalDocs.Web
 			#region Template
 			if (String.IsNullOrEmpty(this.targetSite.TemplateFile))
 			{
-				string tmp = Path.Combine(rootDir, "master.html");
+				string tmp = Path.Combine(rootDir, this.LayoutFolderName, "master.html");
 				if (File.Exists(tmp))
 				{
 					this.targetSite.TemplateFile = tmp;
 				}
 				else
 				{
-					this.targetSite.TemplateFile = Path.Combine(this.webRoot, "__layout", "master.html");
+					this.targetSite.TemplateFile = Path.Combine(this.webRoot, this.LayoutFolderName, "master.html");
 				}
 			}
 

@@ -64,8 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
-    <Content Include="MarkdownTestFiles_Target2\master.html" />
     <Content Include="__layout\master.html" />
+    <Content Include="MarkdownTestFiles_Target2\__layout\master.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MarkdownTestFiles_Target1\" />
@@ -73,6 +73,7 @@
     <Folder Include="MarkdownTestFiles_Target2\" />
     <Folder Include="Config\" />
     <Folder Include="__layout\" />
+    <Folder Include="MarkdownTestFiles_Target2\__layout\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MarkdownTestFiles_Target1\introduction.md" />
