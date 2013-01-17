@@ -7,12 +7,16 @@ using MarkdownSharp;
 
 namespace LocalDocs.Web.Handlers
 {
+	/// <summary>
+	/// Handles requests for markdown pages
+	/// </summary>
 	public class MarkdownPageHandler : IHandler
 	{
 		public MarkdownPageHandler()
 		{
 		}
 
+		#region IHandler implementation
 		public void HandleRequest(HttpContext context, PageContext pageContext)
 		{
 			HttpRequest req = context.Request;
@@ -74,6 +78,7 @@ namespace LocalDocs.Web.Handlers
 
 			resp.Write(output);
 		}
+		#endregion IHandler implementation
 
 		#region Get markdown
 		private string GetMarkdown(string path)

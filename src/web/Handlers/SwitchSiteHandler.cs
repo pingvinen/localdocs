@@ -4,6 +4,9 @@ using System.Collections.Specialized;
 
 namespace LocalDocs.Web.Handlers
 {
+	/// <summary>
+	/// Handles "switch site"-requests
+	/// </summary>
 	public class SwitchSiteHandler : IHandler
 	{
 		public SwitchSiteHandler()

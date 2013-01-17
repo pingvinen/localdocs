@@ -32,7 +32,6 @@ namespace LocalDocs.Web
 		public void ProcessRequest(HttpContext context)
 		{
 			HttpRequest req = context.Request;
-			HttpResponse resp = context.Response;
 
 			#region Web root
 			if (String.IsNullOrEmpty(this.webRoot))
