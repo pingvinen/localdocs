@@ -12,5 +12,6 @@ namespace LocalDocs.Web
 		public string Name { get; set; }
 		public string Root { get; set; }
 		public string TemplateFile { get; set; }
+		public bool HasCustomLayout { get; set; }
 	}
 }

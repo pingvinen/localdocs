@@ -86,10 +86,13 @@ namespace LocalDocs.Web
 			#region Template
 			if (String.IsNullOrEmpty(this.targetSite.TemplateFile))
 			{
-				string tmp = Path.Combine(rootDir, this.LayoutFolderName, "master.html");
-				if (File.Exists(tmp))
+				string tmp = Path.Combine(rootDir, this.LayoutFolderName);
+
+				this.targetSite.HasCustomLayout = Directory.Exists(tmp);
+
+				if (this.targetSite.HasCustomLayout)
 				{
-					this.targetSite.TemplateFile = tmp;
+					this.targetSite.TemplateFile = Path.Combine(tmp, "master.html");
 				}
 				else
 				{
