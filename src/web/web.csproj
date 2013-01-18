@@ -80,6 +80,7 @@
     <Content Include="__layout\assets\css\bootstrap-responsive.min.css" />
     <Content Include="__layout\assets\js\bootstrap.min.js" />
     <Content Include="__layout\assets\css\default.css" />
+    <Content Include="__layout\assets\js\jquery-1.9.0.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />
