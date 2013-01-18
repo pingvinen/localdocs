@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>${Model.Target.Name}</title>
+	</head>
+	
+	<body>
+		${Model.MarkdownHtml}
+		<br><br>
+		<select onchange="window.location=this.value">
+		<for each="var cur in Model.AvailableSites">
+			<if condition="cur.IsActive">
+				<option value="${cur.Url}" selected="selected">${cur.Name}</option>
+			</if>
+			<else>
+				<option value="${cur.Url}">${cur.Name}</option>
+			</else>
+		</for>
+		</select>
+	</body>
+</html>

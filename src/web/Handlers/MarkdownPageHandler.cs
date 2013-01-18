@@ -4,6 +4,8 @@ using System.Text;
 using System.Collections.Generic;
 using System.IO;
 using MarkdownSharp;
+using LocalDocs.Web.SparkStuff;
+using LocalDocs.Web.Handlers.MarkdownSupport;
 
 namespace LocalDocs.Web.Handlers
 {
@@ -71,12 +73,23 @@ namespace LocalDocs.Web.Handlers
 				throw new InvalidOperationException(String.Format("Template file for '{0}' is missing. It should be at '{1}'", target.Name, templateFilePath));
 			}
 
+			SparkRenderer renderer = new SparkRenderer();
+			string output = renderer.Render(templateFilePath, new ViewModel {
+				Target = target,
+				MarkdownHtml = this.ProcessMarkdown(this.GetMarkdown(mdFilePath)),
+				AvailableSites = this.MakeTargetSiteSelect(target.Id)
+			});
+
+
+			/*
+
 			string output = File.ReadAllText(templateFilePath);
 
 			output = output.Replace("${target.name}", target.Name);
 			output = output.Replace("${content}", this.ProcessMarkdown(this.GetMarkdown(mdFilePath)));
 			output = output.Replace("${debug}", sbDebug.ToString());
 			output = output.Replace("${siteselect}", this.MakeTargetSiteSelect(target.Id));
+			*/
 
 			resp.Write(output);
 		}
@@ -104,30 +117,22 @@ namespace LocalDocs.Web.Handlers
 		#endregion Process markdown
 
 		#region Make site select
-		private string MakeTargetSiteSelect(string currentSiteId)
+		private IList<SiteSwitchEntry> MakeTargetSiteSelect(string currentSiteId)
 		{
-			StringBuilder sb = new StringBuilder();
-
-			sb.Append("<select onchange=\"window.location='switchsite?to='+this.value;\">");
+			List<SiteSwitchEntry> res = new List<SiteSwitchEntry>();
 
 			IList<TargetSite> sites = TargetSitesConfig.GetAllSites();
 
-			string selected;
 			foreach (TargetSite cur in sites)
 			{
-				selected = String.Empty;
-
-				if (cur.Id.Equals(currentSiteId))
-				{
-					selected = " selected=\"selected\"";
-				}
-
-				sb.AppendFormat("<option value=\"{0}\"{2}>{1}</option>", cur.Id, cur.Name, selected);
+				res.Add(new SiteSwitchEntry() {
+					Name = cur.Name,
+					Url = String.Format("/switchsite?to={0}", cur.Id),
+					IsActive = cur.Id.Equals(currentSiteId)
+				});
 			}
 
-			sb.Append("</select>");
-
-			return sb.ToString();
+			return res;
 		}
 		#endregion Make site select
 	}
