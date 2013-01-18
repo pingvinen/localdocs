@@ -7,50 +7,42 @@ namespace LocalDocs.Web
 	/// Handles all requests by looking for, and outputting, a Markdown
 	/// file that matches the location in the url
 	/// </summary>
-	public class LocalDocsHttpHandler : IHttpHandler
+	public class LocalDocsHttpHandler : IHttpHandler, System.Web.SessionState.IRequiresSessionState
 	{
-		private TargetSite targetSite;
-
-		private string webRoot;
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="LocalDocs.Web.MarkdownHttpHandler"/> class.
 		/// </summary>
 		public LocalDocsHttpHandler()
 		{
-			this.targetSite = TargetSitesConfig.GetDefaultSite();
 		}
 
 		/// <summary>
 		/// Get whether this handler instance can be used by
 		/// multiple requests
 		/// </summary>
-		public bool IsReusable { get { return true; } }
+		public bool IsReusable { get { return false; } }
 
 		#region Process request
 		public void ProcessRequest(HttpContext context)
 		{
-			#region Web root
-			if (String.IsNullOrEmpty(this.webRoot))
+			if (!Session.HasSession())
 			{
-				this.webRoot = context.Server.MapPath("/");
+				this.PrepareSession(context);
 			}
-			#endregion Web root
 
 			IHandler handler = HandlerFactory.GetInstance(context);
 		
-			PageContext pcon = new PageContext() {
-				Site = this.targetSite,
-				WebRoot = this.webRoot
-			};
-
-			handler.HandleRequest(context, pcon);
-
-			// this needs to be run after for
-			// "switch site"-requests, to persist
-			// the switch
-			this.targetSite = pcon.Site;
+			handler.HandleRequest(context);
 		}
 		#endregion Process request
+
+		#region Prepare session
+		private void PrepareSession(HttpContext context)
+		{
+			Session ses = Session.GetInstance();
+			ses.WebRoot = context.Server.MapPath("/");
+			ses.TargetSiteId = TargetSitesConfig.GetDefaultSite().Id;
+		}
+		#endregion Prepare session
 	}
 }

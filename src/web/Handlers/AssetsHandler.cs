@@ -15,12 +15,19 @@ namespace LocalDocs.Web.Handlers
 		}
 
 		#region IHandler implementation
-		public void HandleRequest(HttpContext context, PageContext pageContext)
+		public void HandleRequest(HttpContext context)
 		{
 			HttpRequest req = context.Request;
 			HttpResponse resp = context.Response;
+			Session ses = Session.GetInstance();
+			TargetSite target = TargetSitesConfig.Get(ses.TargetSiteId);
 
-			string mdRoot = this.GetMarkdownRootDir(pageContext);
+			string mdRoot = ses.WebRoot;
+			if (target.HasCustomLayout)
+			{
+				mdRoot = Helper.GetMarkdownRootDir(target.Root, ses.WebRoot);
+			}
+
 			string reqPath = req.Path.Remove(0, 1);
 
 			string path = Path.Combine(mdRoot, Constants.LayoutFolderName, reqPath);
@@ -35,21 +42,5 @@ namespace LocalDocs.Web.Handlers
 			}
 		}
 		#endregion
-
-		#region Helper: markdown root dir
-		private string GetMarkdownRootDir(PageContext pageContext)
-		{
-			string fromConf = pageContext.Site.Root;
-
-			if (Path.IsPathRooted(fromConf))
-			{
-				return fromConf;
-			}
-
-			string absolutePath = Path.Combine(pageContext.WebRoot, fromConf);
-
-			return absolutePath;
-		}
-		#endregion Helper: markdown root dir
 	}
 }

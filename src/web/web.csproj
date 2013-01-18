@@ -60,7 +60,6 @@
     <Compile Include="Config\TargetSitesElement.cs" />
     <Compile Include="Config\TargetSitesElementCollection.cs" />
     <Compile Include="TargetSite.cs" />
-    <Compile Include="PageContext.cs" />
     <Compile Include="Handlers\MarkdownPageHandler.cs" />
     <Compile Include="Handlers\SwitchSiteHandler.cs" />
     <Compile Include="Constants.cs" />
@@ -68,6 +67,8 @@
     <Compile Include="IHandler.cs" />
     <Compile Include="HandlerFactory.cs" />
     <Compile Include="Handlers\AssetsHandler.cs" />
+    <Compile Include="Session.cs" />
+    <Compile Include="Helper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />

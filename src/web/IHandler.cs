@@ -5,6 +5,6 @@ namespace LocalDocs.Web
 {
 	public interface IHandler
 	{
-		void HandleRequest(HttpContext context, PageContext pageContext);
+		void HandleRequest(HttpContext context);
 	}
 }
