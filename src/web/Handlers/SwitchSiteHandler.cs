@@ -14,10 +14,11 @@ namespace LocalDocs.Web.Handlers
 		}
 
 		#region IHandler implementation
-		public void HandleRequest(HttpContext context, PageContext pageContext)
+		public void HandleRequest(HttpContext context)
 		{
 			HttpRequest req = context.Request;
 			HttpResponse resp = context.Response;
+			Session ses = Session.GetInstance();
 
 			NameValueCollection nvc = req.QueryString;
 			if (String.IsNullOrEmpty(nvc["to"]))
@@ -27,7 +28,7 @@ namespace LocalDocs.Web.Handlers
 
 			try
 			{
-				pageContext.Site = TargetSitesConfig.Get(nvc["to"]);
+				ses.TargetSiteId = TargetSitesConfig.Get(nvc["to"]).Id;
 				resp.Redirect("/", false);
 			}
 

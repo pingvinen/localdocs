@@ -17,12 +17,14 @@ namespace LocalDocs.Web.Handlers
 		}
 
 		#region IHandler implementation
-		public void HandleRequest(HttpContext context, PageContext pageContext)
+		public void HandleRequest(HttpContext context)
 		{
 			HttpRequest req = context.Request;
 			HttpResponse resp = context.Response;
+			Session ses = Session.GetInstance();
+			TargetSite target = TargetSitesConfig.Get(ses.TargetSiteId);
 
-			string rootDir = this.GetMarkdownRootDir(pageContext);
+			string rootDir = Helper.GetMarkdownRootDir(target.Root, ses.WebRoot);
 			string requestedPath = req.Path;
 
 			// the default file is "index.md"
@@ -37,28 +39,28 @@ namespace LocalDocs.Web.Handlers
 			string mdFilePath = String.Format("{0}.md", Path.Combine(rootDir, requestedPath));
 
 			#region Template
-			if (String.IsNullOrEmpty(pageContext.Site.TemplateFile))
+			if (String.IsNullOrEmpty(target.TemplateFile))
 			{
 				string tmp = Path.Combine(rootDir, Constants.LayoutFolderName);
 
-				pageContext.Site.HasCustomLayout = Directory.Exists(tmp);
+				target.HasCustomLayout = Directory.Exists(tmp);
 
-				if (pageContext.Site.HasCustomLayout)
+				if (target.HasCustomLayout)
 				{
-					pageContext.Site.TemplateFile = Path.Combine(tmp, Constants.MasterFileName);
+					target.TemplateFile = Path.Combine(tmp, Constants.MasterFileName);
 				}
 				else
 				{
-					pageContext.Site.TemplateFile = Path.Combine(pageContext.WebRoot, Constants.LayoutFolderName, Constants.MasterFileName);
+					target.TemplateFile = Path.Combine(ses.WebRoot, Constants.LayoutFolderName, Constants.MasterFileName);
 				}
 			}
 
-			string templateFilePath = pageContext.Site.TemplateFile;
+			string templateFilePath = target.TemplateFile;
 			#endregion Template
 
 			#region Debug
 			StringBuilder sbDebug = new StringBuilder();
-			sbDebug.AppendFormat("<p>Current target site name: '{0}'</p>", pageContext.Site.Name);
+			sbDebug.AppendFormat("<p>Current target site name: '{0}'</p>", target.Name);
 			sbDebug.AppendFormat("<p>Markdown root directoy: '{0}'</p>", rootDir);
 			sbDebug.AppendFormat("<p>Requested path: '{0}'</p>", requestedPath);
 			sbDebug.AppendFormat("<p>Markdown file path: '{0}'</p>", mdFilePath);
@@ -66,15 +68,15 @@ namespace LocalDocs.Web.Handlers
 
 			if (!File.Exists(templateFilePath))
 			{
-				throw new InvalidOperationException(String.Format("Template file for '{0}' is missing. It should be at '{1}'", pageContext.Site.Name, templateFilePath));
+				throw new InvalidOperationException(String.Format("Template file for '{0}' is missing. It should be at '{1}'", target.Name, templateFilePath));
 			}
 
 			string output = File.ReadAllText(templateFilePath);
 
-			output = output.Replace("${target.name}", pageContext.Site.Name);
+			output = output.Replace("${target.name}", target.Name);
 			output = output.Replace("${content}", this.ProcessMarkdown(this.GetMarkdown(mdFilePath)));
 			output = output.Replace("${debug}", sbDebug.ToString());
-			output = output.Replace("${siteselect}", this.MakeTargetSiteSelect(pageContext.Site.Id));
+			output = output.Replace("${siteselect}", this.MakeTargetSiteSelect(target.Id));
 
 			resp.Write(output);
 		}
@@ -100,22 +102,6 @@ namespace LocalDocs.Web.Handlers
 			return md.Transform(markdown);
 		}
 		#endregion Process markdown
-
-		#region Helper: markdown root dir
-		private string GetMarkdownRootDir(PageContext pageContext)
-		{
-			string fromConf = pageContext.Site.Root;
-
-			if (Path.IsPathRooted(fromConf))
-			{
-				return fromConf;
-			}
-
-			string absolutePath = Path.Combine(pageContext.WebRoot, fromConf);
-
-			return absolutePath;
-		}
-		#endregion Helper: markdown root dir
 
 		#region Make site select
 		private string MakeTargetSiteSelect(string currentSiteId)
