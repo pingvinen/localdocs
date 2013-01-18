@@ -40,6 +40,12 @@
     <Reference Include="MarkdownSharp">
       <HintPath>..\..\libs\MarkdownSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Spark">
+      <HintPath>..\..\libs\spark\Spark.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -69,11 +75,13 @@
     <Compile Include="Handlers\AssetsHandler.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="SparkStuff\TemplateBase.cs" />
+    <Compile Include="SparkStuff\SparkRenderer.cs" />
+    <Compile Include="Handlers\MarkdownSupport\ViewModel.cs" />
+    <Compile Include="Handlers\MarkdownSupport\MarkdownPageTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
-    <Content Include="__layout\master.html" />
-    <Content Include="MarkdownTestFiles_CustomLayout\__layout\master.html" />
     <Content Include="__layout\assets\img\glyphicons-halflings.png" />
     <Content Include="__layout\assets\img\glyphicons-halflings-white.png" />
     <Content Include="__layout\assets\css\bootstrap.min.css" />
@@ -81,6 +89,8 @@
     <Content Include="__layout\assets\js\bootstrap.min.js" />
     <Content Include="__layout\assets\css\default.css" />
     <Content Include="__layout\assets\js\jquery-1.9.0.min.js" />
+    <Content Include="__layout\master.spark" />
+    <Content Include="MarkdownTestFiles_CustomLayout\__layout\master.spark" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />
@@ -93,6 +103,8 @@
     <Folder Include="__layout\assets\" />
     <Folder Include="__layout\assets\css\" />
     <Folder Include="__layout\assets\js\" />
+    <Folder Include="SparkStuff\" />
+    <Folder Include="Handlers\MarkdownSupport\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MarkdownTestFiles_DefaultLayout\introduction.md" />

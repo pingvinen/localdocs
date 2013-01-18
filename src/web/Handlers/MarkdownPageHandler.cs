@@ -4,6 +4,8 @@ using System.Text;
 using System.Collections.Generic;
 using System.IO;
 using MarkdownSharp;
+using LocalDocs.Web.SparkStuff;
+using LocalDocs.Web.Handlers.MarkdownSupport;
 
 namespace LocalDocs.Web.Handlers
 {
@@ -71,12 +73,22 @@ namespace LocalDocs.Web.Handlers
 				throw new InvalidOperationException(String.Format("Template file for '{0}' is missing. It should be at '{1}'", target.Name, templateFilePath));
 			}
 
+			SparkRenderer renderer = new SparkRenderer();
+			string output = renderer.Render(templateFilePath, new ViewModel {
+				Target = target,
+				MarkdownHtml = this.ProcessMarkdown(this.GetMarkdown(mdFilePath))
+			});
+
+
+			/*
+
 			string output = File.ReadAllText(templateFilePath);
 
 			output = output.Replace("${target.name}", target.Name);
 			output = output.Replace("${content}", this.ProcessMarkdown(this.GetMarkdown(mdFilePath)));
 			output = output.Replace("${debug}", sbDebug.ToString());
 			output = output.Replace("${siteselect}", this.MakeTargetSiteSelect(target.Id));
+			*/
 
 			resp.Write(output);
 		}

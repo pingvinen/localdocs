@@ -15,7 +15,7 @@ namespace LocalDocs.Web
 		/// <summary>
 		/// The name of the master file.
 		/// </summary>
-		public const string MasterFileName = "master.html";
+		public const string MasterFileName = "master.spark";
 
 		/// <summary>
 		/// The request path of "switch site"-requests
