@@ -13,7 +13,13 @@ namespace LocalDocs.Web.Handlers
 	{
 		private static IDictionary<string, string> MimeTypes = new Dictionary<string, string>() {
 			{ ".css", "text/css" },
-			{ ".js", "text/javascript" }
+			{ ".js", "text/javascript" },
+			{ ".swf", "application/x-shockwave-flash" },
+			{ ".pdf", "application/pdf" },
+			{ ".gif", "image/gif" },
+			{ ".png", "image/png" },
+			{ ".jpg", "image/jpeg" },
+			{ ".jpeg", "image/jpeg" }
 		};
 
 		public AssetsHandler()
