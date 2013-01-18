@@ -76,7 +76,8 @@ namespace LocalDocs.Web.Handlers
 			SparkRenderer renderer = new SparkRenderer();
 			string output = renderer.Render(templateFilePath, new ViewModel {
 				Target = target,
-				MarkdownHtml = this.ProcessMarkdown(this.GetMarkdown(mdFilePath))
+				MarkdownHtml = this.ProcessMarkdown(this.GetMarkdown(mdFilePath)),
+				AvailableSites = this.MakeTargetSiteSelect(target.Id)
 			});
 
 
@@ -116,30 +117,22 @@ namespace LocalDocs.Web.Handlers
 		#endregion Process markdown
 
 		#region Make site select
-		private string MakeTargetSiteSelect(string currentSiteId)
+		private IList<SiteSwitchEntry> MakeTargetSiteSelect(string currentSiteId)
 		{
-			StringBuilder sb = new StringBuilder();
-
-			sb.Append("<select onchange=\"window.location='switchsite?to='+this.value;\">");
+			List<SiteSwitchEntry> res = new List<SiteSwitchEntry>();
 
 			IList<TargetSite> sites = TargetSitesConfig.GetAllSites();
 
-			string selected;
 			foreach (TargetSite cur in sites)
 			{
-				selected = String.Empty;
-
-				if (cur.Id.Equals(currentSiteId))
-				{
-					selected = " selected=\"selected\"";
-				}
-
-				sb.AppendFormat("<option value=\"{0}\"{2}>{1}</option>", cur.Id, cur.Name, selected);
+				res.Add(new SiteSwitchEntry() {
+					Name = cur.Name,
+					Url = String.Format("/switchsite?to={0}", cur.Id),
+					IsActive = cur.Id.Equals(currentSiteId)
+				});
 			}
 
-			sb.Append("</select>");
-
-			return sb.ToString();
+			return res;
 		}
 		#endregion Make site select
 	}

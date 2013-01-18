@@ -41,8 +41,14 @@
 									<b class="caret"></b>
 								</a>
 								<ul class="dropdown-menu">
-									<li class="active"><a href="/switchsite?to=defaultlayout">Default layout</a></li>
-									<li><a href="/switchsite?to=customlayout">Custom layout</a></li>
+									<for each="var cur in Model.AvailableSites">
+										<if condition="cur.IsActive">
+											<li class="active"><a href="${cur.Url}">${cur.Name}</a></li>
+										</if>
+										<else>
+											<li><a href="${cur.Url}">${cur.Name}</a></li>
+										</else>
+									</for>
 								</ul>
 							</li>
 						</ul>
