@@ -2,6 +2,7 @@ using System;
 using System.Web;
 using System.Collections.Specialized;
 using System.IO;
+using System.Collections.Generic;
 
 namespace LocalDocs.Web.Handlers
 {
@@ -10,6 +11,11 @@ namespace LocalDocs.Web.Handlers
 	/// </summary>
 	public class AssetsHandler : IHandler
 	{
+		private static IDictionary<string, string> MimeTypes = new Dictionary<string, string>() {
+			{ ".css", "text/css" },
+			{ ".js", "text/javascript" }
+		};
+
 		public AssetsHandler()
 		{
 		}
@@ -34,6 +40,7 @@ namespace LocalDocs.Web.Handlers
 
 			if (File.Exists(path))
 			{
+				resp.ContentType = this.GetMimeType(path);
 				resp.WriteFile(path, true);
 			}
 			else
@@ -42,5 +49,21 @@ namespace LocalDocs.Web.Handlers
 			}
 		}
 		#endregion
+
+		#region Get mimetype
+		private string GetMimeType(string path)
+		{
+			string ext = Path.GetExtension(path);
+
+			string res;
+
+			if (!MimeTypes.TryGetValue(ext, out res))
+			{
+				throw new NotSupportedException(String.Format("I do not know which mime-type to use for '{0}'", ext));
+			}
+
+			return res;
+		}
+		#endregion Get mimetype
 	}
 }
