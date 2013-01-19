@@ -26,5 +26,15 @@ namespace LocalDocs.Web
 		/// The first part of the request path for assets
 		/// </summary>
 		public const string AssetsPath = "/assets/";
+
+		/// <summary>
+		/// The request path of the sitemap page
+		/// </summary>
+		public const string SitemapPath = "/__sitemap";
+
+		/// <summary>
+		/// The name of the sitemap file.
+		/// </summary>
+		public const string SitemapFileName = "sitemap.spark";
 	}
 }
