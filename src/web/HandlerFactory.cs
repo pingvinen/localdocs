@@ -20,6 +20,11 @@ namespace LocalDocs.Web
 				return new AssetsHandler();
 			}
 
+			if (req.Path.Equals(Constants.SitemapPath))
+			{
+				return new SitemapPageHandler();
+			}
+
 			return new MarkdownPageHandler();
 		}
 	}

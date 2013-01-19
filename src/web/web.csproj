@@ -80,6 +80,8 @@
     <Compile Include="Handlers\MarkdownSupport\ViewModel.cs" />
     <Compile Include="Handlers\MarkdownSupport\MarkdownPageTemplate.cs" />
     <Compile Include="Handlers\MarkdownSupport\SiteSwitchEntry.cs" />
+    <Compile Include="Handlers\SitemapPageHandler.cs" />
+    <Compile Include="MarkdownHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />

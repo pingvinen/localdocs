@@ -37,7 +37,7 @@ namespace LocalDocs.Web.Handlers
 			string mdRoot = ses.WebRoot;
 			if (target.HasCustomLayout)
 			{
-				mdRoot = Helper.GetMarkdownRootDir(target.Root, ses.WebRoot);
+				mdRoot = Helper.GetTargetRootDir(target.Root, ses.WebRoot);
 			}
 
 			string reqPath = req.Path.Remove(0, 1);
