@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using LocalDocs.Web.Handlers.MarkdownSupport;
+using ServiceStack.Text;
 
 namespace LocalDocs.Web
 {
@@ -58,5 +59,21 @@ namespace LocalDocs.Web
 			return res;
 		}
 		#endregion Get available targets
+
+		#region Load config
+		public static void LoadConfig(TargetSite target, string webroot)
+		{
+			string configFile = Path.Combine(Helper.GetTargetRootDir(target.Root, webroot), Constants.ConfigFileName);
+
+			if (!File.Exists(configFile))
+			{
+				target.HasLoadedConfig = true;
+				target.Config = new TargetConfig();
+				return;
+			}
+
+			target.Config = File.ReadAllText(configFile).FromJson<TargetConfig>();
+		}
+		#endregion Load config
 	}
 }

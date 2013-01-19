@@ -1,0 +1,21 @@
+{
+	"navigation": [
+		{
+			"label": "Introduction",
+			"path": "/introduction"
+		},
+		
+		{
+			"label": "Sub",
+			"path": "/sub/specific"
+		},
+		
+		{
+			"label": "Typography",
+			"items": [
+				{ "label": "Colors", "path": "/typography/colors" },
+				{ "label": "Sizes", "path": "/typography/sizes" }
+			]
+		}
+	]
+}

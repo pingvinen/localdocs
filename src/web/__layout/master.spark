@@ -30,9 +30,23 @@
 					<a class="brand" href="/">${Model.Target.Name}</a>
 					<div class="nav-collapse collapse">
 						<ul class="nav">
-							<li class="active"><a href="http://twitter.github.com/bootstrap/examples/starter-template.html#">Home</a></li>
-							<li><a href="http://twitter.github.com/bootstrap/examples/starter-template.html#about">About</a></li>
-							<li><a href="http://twitter.github.com/bootstrap/examples/starter-template.html#contact">Contact</a></li>
+							<if condition="Model.Target.Config.Navigation != null">
+								<for each="var entry in Model.Target.Config.Navigation">
+									<if condition="!String.IsNullOrEmpty(entry.Path)">
+										<li><a href="${entry.Path}">${entry.Label}</a></li>
+									</if>
+									<else>
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown">${entry.Label} <b class="caret"></b></a>
+											<ul class="dropdown-menu">
+												<for each="var item in entry.Items">
+													<li><a href="${item.Path}">${item.Label}</a></li>
+												</for>
+											</ul>
+										</li>
+									</else>
+								</for>
+							</if>
 						</ul>
 						<ul class="nav pull-right">
 							<li><a href="/__sitemap">Sitemap</a></li>

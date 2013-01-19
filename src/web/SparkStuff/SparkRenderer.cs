@@ -16,6 +16,9 @@ namespace LocalDocs.Web.SparkStuff
 			settings.SetPageBaseType(typeof(MarkdownPageTemplate));
 			settings.DefaultLanguage = LanguageType.CSharp;
 			settings.Debug = true;
+
+			settings.AddNamespace("System");
+
 			this.engine = new SparkViewEngine(settings);
 		}
 

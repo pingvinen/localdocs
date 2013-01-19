@@ -5,4 +5,7 @@ a:hover{color:#ce5c00;text-decoration:none;}
 h1{color:#729fcf;}
 h2{color:#fce94f;}
 h3,h4,h5,h6{color:#d3d7cf;}
+ul.nav li.dropdown ul.dropdown-menu{background-color:#555753;}ul.nav li.dropdown ul.dropdown-menu li>a{color:#d3d7cf;}
+ul.nav li.dropdown ul.dropdown-menu li:hover>a,ul.nav li.dropdown ul.dropdown-menu li:hover>a:hover{color:#000;}
+ul.nav li.dropdown-menu li>a:hover,ul.nav .dropdown-menu li>a:focus,ul.nav .dropdown-submenu:hover>a{background-color:#fcaf3e;background-image:none;}
 .clickable{cursor:pointer;}

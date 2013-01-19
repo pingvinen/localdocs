@@ -28,3 +28,25 @@ h2 {
 h3, h4, h5, h6 {
 	color: @color-body-fg;
 }
+
+
+ul.nav {
+	li.dropdown {
+		ul.dropdown-menu {
+			background-color: @tango-aluminium5;
+			
+			li > a {
+				color: @color-body-fg;
+			}
+			
+			li:hover > a, li:hover > a:hover {
+				color: #000;
+			}
+		}
+	}
+	
+	li.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
+		background-color: @tango-orange1;
+		background-image: none;
+	}
+}

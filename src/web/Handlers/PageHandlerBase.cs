@@ -32,6 +32,13 @@ namespace LocalDocs.Web.Handlers
 			// remove the initial slash, so we can use Path.Combine
 			requestedPath = requestedPath.Remove(0, 1);
 
+			#region Target config
+			if (!target.HasLoadedConfig)
+			{
+				Helper.LoadConfig(target, ses.WebRoot);
+			}
+			#endregion Target config
+
 			#region Template
 			if (String.IsNullOrEmpty(target.TemplateFile))
 			{

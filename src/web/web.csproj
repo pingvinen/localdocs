@@ -46,6 +46,9 @@
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <Private>False</Private>
     </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\libs\servicestack\ServiceStack.Text.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -85,6 +88,8 @@
     <Compile Include="Handlers\PageHandlerBase.cs" />
     <Compile Include="Handlers\MarkdownSupport\Sitemap.cs" />
     <Compile Include="Handlers\MarkdownSupport\SitemapEntry.cs" />
+    <Compile Include="TargetConfig.cs" />
+    <Compile Include="NavigationEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
@@ -98,6 +103,7 @@
     <Content Include="__layout\master.spark" />
     <Content Include="MarkdownTestFiles_CustomLayout\__layout\master.spark" />
     <Content Include="__layout\less\utils.less" />
+    <Content Include="MarkdownTestFiles_DefaultLayout\__config.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />

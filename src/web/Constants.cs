@@ -36,5 +36,10 @@ namespace LocalDocs.Web
 		/// The name of the sitemap file.
 		/// </summary>
 		public const string SitemapFileName = "sitemap.spark";
+
+		/// <summary>
+		/// The name of the target site config file.
+		/// </summary>
+		public const string ConfigFileName = "__config.json";
 	}
 }
