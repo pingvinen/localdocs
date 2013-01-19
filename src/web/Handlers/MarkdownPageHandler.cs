@@ -12,57 +12,23 @@ namespace LocalDocs.Web.Handlers
 	/// <summary>
 	/// Handles requests for markdown pages
 	/// </summary>
-	public class MarkdownPageHandler : IHandler
+	public class MarkdownPageHandler : PageHandlerBase
 	{
 		public MarkdownPageHandler()
 		{
 		}
 
-		#region IHandler implementation
-		public void HandleRequest(HttpContext context)
+		#region implemented abstract members of LocalDocs.Web.Handlers.PageHandlerBase
+		protected override ViewModel InternalHandler(HttpContext context, TargetSite target, string targetRootDir, string requestedPath)
 		{
-			HttpRequest req = context.Request;
-			HttpResponse resp = context.Response;
-			Session ses = Session.GetInstance();
-			TargetSite target = TargetSitesConfig.Get(ses.TargetSiteId);
+			ViewModel vm = new ViewModel();
 
-			string rootDir = Helper.GetTargetRootDir(target.Root, ses.WebRoot);
-			string requestedPath = req.Path;
+			string mdFilePath = String.Format("{0}.md", Path.Combine(targetRootDir, requestedPath));
 
-			// the default file is "index.md"
-			if (requestedPath.Equals("/"))
-			{
-				requestedPath = "/index";
-			}
+			vm.MarkdownHtml = MarkdownHelper.ProcessMarkdown(MarkdownHelper.GetMarkdown(mdFilePath));
 
-			// remove the initial slash, so we can use Path.Combine
-			requestedPath = requestedPath.Remove(0, 1);
-
-			string mdFilePath = String.Format("{0}.md", Path.Combine(rootDir, requestedPath));
-
-			#region Template
-			if (String.IsNullOrEmpty(target.TemplateFile))
-			{
-				Helper.SetTemplateFileOfTarget(target, rootDir, ses.WebRoot);
-			}
-
-			string templateFilePath = target.TemplateFile;
-			#endregion Template
-
-			if (!File.Exists(templateFilePath))
-			{
-				throw new InvalidOperationException(String.Format("Template file for '{0}' is missing. It should be at '{1}'", target.Name, templateFilePath));
-			}
-
-			SparkRenderer renderer = new SparkRenderer();
-			string output = renderer.Render(templateFilePath, new ViewModel {
-				Target = target,
-				MarkdownHtml = MarkdownHelper.ProcessMarkdown(MarkdownHelper.GetMarkdown(mdFilePath)),
-				AvailableSites = Helper.GetAvailableTargets(target.Id)
-			});
-
-			resp.Write(output);
+			return vm;
 		}
-		#endregion IHandler implementation
+		#endregion
 	}
 }

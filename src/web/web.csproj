@@ -82,6 +82,7 @@
     <Compile Include="Handlers\MarkdownSupport\SiteSwitchEntry.cs" />
     <Compile Include="Handlers\SitemapPageHandler.cs" />
     <Compile Include="MarkdownHelper.cs" />
+    <Compile Include="Handlers\PageHandlerBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
