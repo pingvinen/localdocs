@@ -1,2 +1,13 @@
 
-<p>Just testing... ${Model.Target.Root}</p>
+<h1>Sitemap</h1>
+
+<def PrevNs="null" type="string" />
+
+<for each="var entry in Model.Sitemap.Entries">
+	<if condition="!entry.Namespace.Equals(PrevNs)">
+		<set PrevNs="entry.Namespace"/>
+		<br><strong>${entry.Namespace}</strong><br>
+	</if>
+	
+	<a href="${entry.Url}">${entry.Name}</a><br>
+</for>
