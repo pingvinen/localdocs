@@ -97,6 +97,7 @@
     <Content Include="__layout\assets\js\jquery-1.9.0.min.js" />
     <Content Include="__layout\master.spark" />
     <Content Include="MarkdownTestFiles_CustomLayout\__layout\master.spark" />
+    <Content Include="__layout\less\utils.less" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />
@@ -111,6 +112,8 @@
     <Folder Include="__layout\assets\js\" />
     <Folder Include="SparkStuff\" />
     <Folder Include="Handlers\MarkdownSupport\" />
+    <Folder Include="__layout\less\" />
+    <Folder Include="MarkdownTestFiles_DefaultLayout\typography\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MarkdownTestFiles_DefaultLayout\introduction.md" />
@@ -119,5 +122,10 @@
     <None Include="MarkdownTestFiles_CustomLayout\home.md" />
     <None Include="MarkdownTestFiles_CustomLayout\index.md" />
     <None Include="__layout\sitemap.spark" />
+    <None Include="__layout\less\less_profile.less" />
+    <None Include="__layout\less\base.less" />
+    <None Include="__layout\less\colors.less" />
+    <None Include="__layout\less\colors-tango.less" />
+    <None Include="MarkdownTestFiles_DefaultLayout\typography\colors.md" />
   </ItemGroup>
 </Project>

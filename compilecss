@@ -1,0 +1,3 @@
+#!/bin/bash
+
+lessc --compress src/web/__layout/less/less_profile.less > src/web/__layout/assets/css/default.css

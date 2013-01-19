@@ -1,0 +1,8 @@
+body{background-color:#2e3436;color:#d3d7cf;}
+td,th{text-align:left;}
+a{color:#fcaf3e;}
+a:hover{color:#ce5c00;text-decoration:none;}
+h1{color:#729fcf;}
+h2{color:#fce94f;}
+h3,h4,h5,h6{color:#d3d7cf;}
+.clickable{cursor:pointer;}
