@@ -46,17 +46,15 @@ namespace LocalDocs.Web.Handlers
 				throw new InvalidOperationException(String.Format("Template file for '{0}' is missing. It should be at '{1}'", target.Name, templateFilePath));
 			}
 
-			ViewModel vm = this.InternalHandler(context, target, rootDir, requestedPath);
-			vm.AvailableSites = Helper.GetAvailableTargets(target.Id);
-			vm.Target = target;
-
-			SparkRenderer renderer = new SparkRenderer();
-			string output = renderer.Render(templateFilePath, vm);
+			string output = this.InternalHandler(context, target, rootDir, requestedPath, new ViewModel() {
+				AvailableSites = Helper.GetAvailableTargets(target.Id),
+				Target = target
+			});
 
 			resp.Write(output);
 		}
 		#endregion IHandler implementation
 
-		protected abstract ViewModel InternalHandler(HttpContext context, TargetSite target, string targetRootDir, string requestedPath);
+		protected abstract string InternalHandler(HttpContext context, TargetSite target, string targetRootDir, string requestedPath, ViewModel vm);
 	}
 }

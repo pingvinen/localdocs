@@ -83,6 +83,8 @@
     <Compile Include="Handlers\SitemapPageHandler.cs" />
     <Compile Include="MarkdownHelper.cs" />
     <Compile Include="Handlers\PageHandlerBase.cs" />
+    <Compile Include="Handlers\MarkdownSupport\Sitemap.cs" />
+    <Compile Include="Handlers\MarkdownSupport\SitemapEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
@@ -116,5 +118,6 @@
     <None Include="MarkdownTestFiles_DefaultLayout\index.md" />
     <None Include="MarkdownTestFiles_CustomLayout\home.md" />
     <None Include="MarkdownTestFiles_CustomLayout\index.md" />
+    <None Include="__layout\sitemap.spark" />
   </ItemGroup>
 </Project>

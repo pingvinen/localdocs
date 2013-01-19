@@ -19,15 +19,16 @@ namespace LocalDocs.Web.Handlers
 		}
 
 		#region implemented abstract members of LocalDocs.Web.Handlers.PageHandlerBase
-		protected override ViewModel InternalHandler(HttpContext context, TargetSite target, string targetRootDir, string requestedPath)
+		protected override string InternalHandler(HttpContext context, TargetSite target, string targetRootDir, string requestedPath, ViewModel vm)
 		{
-			ViewModel vm = new ViewModel();
-
 			string mdFilePath = String.Format("{0}.md", Path.Combine(targetRootDir, requestedPath));
 
 			vm.MarkdownHtml = MarkdownHelper.ProcessMarkdown(MarkdownHelper.GetMarkdown(mdFilePath));
 
-			return vm;
+			SparkRenderer renderer = new SparkRenderer();
+			string output = renderer.Render(target.TemplateFile, vm);
+
+			return output;
 		}
 		#endregion
 	}
