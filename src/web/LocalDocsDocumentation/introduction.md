@@ -4,7 +4,7 @@ Introduction
 Hello and welcome to the wonderfull world of LocalDocs.
 
 LocalDocs is a small specialized webplatform built to serve as a platform for in-house documentation created by software-teams. The basic
-concept is simple; let the documentation live within the code repositories as markdown files and use your browser to read it.
+concept is simple; let the documentation live within the code repositories as [Markdown](http://daringfireball.net/projects/markdown/) files and use your browser to read it.
 
 
 
@@ -22,6 +22,8 @@ website and it generates the HTML on-the-fly - you no longer have to run the doc
 
 The webplatform is designed to be run locally directly on each developer's machine. This ensures speed and availability even on those
 horrible days when the internet decides to leave us for a while.
+
+I chose Markdown as the syntax as this seem to be what many developers already use on sites like StackOverflow and Github.
 
 
 
