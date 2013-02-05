@@ -6,6 +6,16 @@
 		},
 		
 		{
+			"label": "Basic usage",
+			"path": "/basicusage"
+		},
+		
+		{
+			"label": "Configuration",
+			"path": "/configuration"
+		},
+		
+		{
 			"label": "Custom layout",
 			"items": [
 				{ "label": "Intro", "path": "/customlayout/intro" },

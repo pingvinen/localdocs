@@ -1,7 +1,17 @@
 Setup
 =====
 
-Not much setup is needed, but you do need to tell LocalDocs where to find your documentation files.
+Webserver
+---------
+You need some kind of webserver that can run .NET/Mono.
+
+LocalDocs is developed on a Linux machine running Nginx and Mono.
+
+Personally I like to create an actual hostname using */etc/hosts* - usually *localdocs.local*.
+
+The website
+-----------
+Not much setup is needed here, but you do need to tell LocalDocs where to find your documentation files.
 
 This is done in the **web.config** file.
 

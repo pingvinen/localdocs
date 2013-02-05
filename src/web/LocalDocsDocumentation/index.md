@@ -24,7 +24,7 @@ website and it generates the HTML on-the-fly - you no longer have to run the doc
 The webplatform is designed to be run locally directly on each developer's machine. This ensures speed and availability even on those
 horrible days when the internet decides to leave us for a while.
 
-I chose Markdown as the syntax as this seem to be what many developers already use on sites like StackOverflow and Github. Actually the
+I chose Markdown as the syntax as this seems to be what many developers already use on sites like StackOverflow and Github. Actually the
 plan is to use [Github Flavored Markdown](http://github.github.com/github-flavored-markdown/) (without the Github-specific links etc.).
 
 

@@ -130,5 +130,6 @@
     <None Include="__layout\less\colors-tango.less" />
     <None Include="LocalDocsDocumentation\index.md" />
     <None Include="LocalDocsDocumentation\setup.md" />
+    <None Include="LocalDocsDocumentation\basicusage.md" />
   </ItemGroup>
 </Project>
