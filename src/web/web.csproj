@@ -118,8 +118,7 @@
     <Folder Include="Handlers\MarkdownSupport\" />
     <Folder Include="__layout\less\" />
     <Folder Include="LocalDocsDocumentation\" />
-    <Folder Include="LocalDocsDocumentation\sub\" />
-    <Folder Include="LocalDocsDocumentation\typography\" />
+    <Folder Include="LocalDocsDocumentation\customlayout\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MarkdownTestFiles_CustomLayout\home.md" />
@@ -129,9 +128,7 @@
     <None Include="__layout\less\base.less" />
     <None Include="__layout\less\colors.less" />
     <None Include="__layout\less\colors-tango.less" />
-    <None Include="LocalDocsDocumentation\introduction.md" />
-    <None Include="LocalDocsDocumentation\sub\specific.md" />
     <None Include="LocalDocsDocumentation\index.md" />
-    <None Include="LocalDocsDocumentation\typography\colors.md" />
+    <None Include="LocalDocsDocumentation\setup.md" />
   </ItemGroup>
 </Project>

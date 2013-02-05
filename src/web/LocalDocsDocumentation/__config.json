@@ -1,20 +1,15 @@
 {
 	"navigation": [
 		{
-			"label": "Introduction",
-			"path": "/introduction"
+			"label": "Setup",
+			"path": "/setup"
 		},
 		
 		{
-			"label": "Sub",
-			"path": "/sub/specific"
-		},
-		
-		{
-			"label": "Typography",
+			"label": "Custom layout",
 			"items": [
-				{ "label": "Colors", "path": "/typography/colors" },
-				{ "label": "Sizes", "path": "/typography/sizes" }
+				{ "label": "Intro", "path": "/customlayout/intro" },
+				{ "label": "File structure", "path": "/customlayout/filestructure" }
 			]
 		}
 	]
