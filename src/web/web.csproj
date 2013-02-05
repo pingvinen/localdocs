@@ -103,13 +103,11 @@
     <Content Include="__layout\master.spark" />
     <Content Include="MarkdownTestFiles_CustomLayout\__layout\master.spark" />
     <Content Include="__layout\less\utils.less" />
-    <Content Include="MarkdownTestFiles_DefaultLayout\__config.json" />
+    <Content Include="LocalDocsDocumentation\__config.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />
     <Folder Include="__layout\" />
-    <Folder Include="MarkdownTestFiles_DefaultLayout\" />
-    <Folder Include="MarkdownTestFiles_DefaultLayout\sub\" />
     <Folder Include="MarkdownTestFiles_CustomLayout\" />
     <Folder Include="MarkdownTestFiles_CustomLayout\__layout\" />
     <Folder Include="Handlers\" />
@@ -119,12 +117,11 @@
     <Folder Include="SparkStuff\" />
     <Folder Include="Handlers\MarkdownSupport\" />
     <Folder Include="__layout\less\" />
-    <Folder Include="MarkdownTestFiles_DefaultLayout\typography\" />
+    <Folder Include="LocalDocsDocumentation\" />
+    <Folder Include="LocalDocsDocumentation\sub\" />
+    <Folder Include="LocalDocsDocumentation\typography\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="MarkdownTestFiles_DefaultLayout\introduction.md" />
-    <None Include="MarkdownTestFiles_DefaultLayout\sub\specific.md" />
-    <None Include="MarkdownTestFiles_DefaultLayout\index.md" />
     <None Include="MarkdownTestFiles_CustomLayout\home.md" />
     <None Include="MarkdownTestFiles_CustomLayout\index.md" />
     <None Include="__layout\sitemap.spark" />
@@ -132,6 +129,9 @@
     <None Include="__layout\less\base.less" />
     <None Include="__layout\less\colors.less" />
     <None Include="__layout\less\colors-tango.less" />
-    <None Include="MarkdownTestFiles_DefaultLayout\typography\colors.md" />
+    <None Include="LocalDocsDocumentation\introduction.md" />
+    <None Include="LocalDocsDocumentation\sub\specific.md" />
+    <None Include="LocalDocsDocumentation\index.md" />
+    <None Include="LocalDocsDocumentation\typography\colors.md" />
   </ItemGroup>
 </Project>
